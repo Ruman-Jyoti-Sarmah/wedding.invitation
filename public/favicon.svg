@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F8EDCB"/>
+      <stop offset="0.5" stop-color="#D8B979"/>
+      <stop offset="1" stop-color="#A9803F"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="96" fill="#0E2A20"/>
+  <rect x="26" y="26" width="460" height="460" rx="74" fill="none" stroke="url(#gold)" stroke-width="3" opacity="0.5"/>
+  <circle cx="256" cy="256" r="158" fill="none" stroke="url(#gold)" stroke-width="6"/>
+  <circle cx="256" cy="256" r="146" fill="none" stroke="url(#gold)" stroke-width="1.5" opacity="0.5"/>
+  <text x="50%" y="53%" font-family="'Noto Serif Bengali', Georgia, 'Times New Roman', serif" font-size="118" font-weight="600" fill="url(#gold)" text-anchor="middle">জ ♥ ব</text>
+</svg>
