@@ -9,6 +9,7 @@ export default function Hero() {
     <section className="hero" id="home" aria-label="শুভ বিবাহ">
       <div
         className="hero__bg"
+        data-parallax="0.18"
         style={{ backgroundImage: `url("${heroImage}")` }}
         aria-hidden="true"
       />

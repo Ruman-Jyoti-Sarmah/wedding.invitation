@@ -7,7 +7,7 @@ export default function Invitation() {
       <SectionDecor />
 
       <div className="container">
-        <div className="invite__paper reveal">
+        <div className="invite__paper reveal" data-parallax="-0.03">
           <GamosaBand className="invite__band" />
 
           <div className="invite__inner">

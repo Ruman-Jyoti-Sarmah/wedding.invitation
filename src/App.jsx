@@ -8,7 +8,8 @@ import Rituals from "./components/Rituals";
 import Schedule from "./components/Schedule";
 import Venue from "./components/Venue";
 import Gallery from "./components/Gallery";
-import Share from "./components/Share";
+import Marquee from "./components/Marquee";
+import Contact from "./components/Contact";
 import Closing from "./components/Closing";
 import MusicControl from "./components/MusicControl";
 import BackToTop from "./components/BackToTop";
@@ -75,6 +76,49 @@ export default function App() {
     return () => observer.disconnect();
   }, [entered]);
 
+  // Depth pass: elements marked with data-parallax drift as the page scrolls.
+  useEffect(() => {
+    if (!entered) return undefined;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return undefined;
+    }
+
+    const nodes = Array.from(document.querySelectorAll("[data-parallax]"));
+    if (!nodes.length) return undefined;
+
+    let frame = 0;
+
+    const update = () => {
+      frame = 0;
+      const viewport = window.innerHeight;
+
+      nodes.forEach((node) => {
+        const host = node.parentElement ?? node;
+        const rect = host.getBoundingClientRect();
+        if (rect.bottom < -260 || rect.top > viewport + 260) return;
+
+        const speed = Number(node.dataset.parallax) || 0.1;
+        const centre = rect.top + rect.height / 2 - viewport / 2;
+        node.style.setProperty("--parallax", `${(-centre * speed).toFixed(1)}px`);
+      });
+    };
+
+    const onScroll = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, [entered]);
+
   // Highlight the section currently in view in the navigation.
   useEffect(() => {
     if (!entered) return undefined;
@@ -112,7 +156,8 @@ export default function App() {
             <Schedule />
             <Venue />
             <Gallery />
-            <Share />
+            <Marquee dark />
+            <Contact />
           </main>
           <Closing />
           <BackToTop />

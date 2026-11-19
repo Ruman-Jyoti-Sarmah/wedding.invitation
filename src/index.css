@@ -751,7 +751,7 @@ ol {
   inset: -3%;
   z-index: -3;
   background-size: cover;
-  background-position: center 45%;
+  background-position: center calc(45% + var(--parallax, 0px));
   transform: scale(1.04);
   animation: heroDrift 26s ease-in-out infinite alternate;
   will-change: transform;
@@ -1110,17 +1110,91 @@ ol {
 }
 
 /* --------------------------------------------------------------------------
-   11. Rituals
+   11. Rituals — pinned horizontal rail
    -------------------------------------------------------------------------- */
-.rituals__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(1rem, 2.2vw, 1.7rem);
+.rituals--cine {
+  position: relative;
+  padding: 0;
+  overflow: visible;
+  background: var(--paper);
+}
+
+.rituals__pin {
+  position: sticky;
+  top: var(--nav-h);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(1.1rem, 2.6vh, 2rem);
+  height: calc(100vh - var(--nav-h));
+  padding-block: clamp(1rem, 3vh, 2.2rem) 0.9rem;
+  overflow: hidden;
+}
+
+.rituals__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-inline: clamp(1.4rem, 6vw, 5.5rem);
+}
+
+.rituals__head-text {
+  max-width: 660px;
+}
+
+.rituals__head h2 {
+  margin-top: 0.45rem;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.85rem, 3.8vw, 2.9rem);
+  line-height: 1.24;
+  color: var(--green-900);
+}
+
+.rituals__head .s-divider {
+  width: 190px;
+  margin: 0.7rem 0;
+  color: var(--gold-500);
+}
+
+.rituals__head p {
+  max-width: 56ch;
+  font-size: 0.88rem;
+  line-height: 1.9;
+  color: var(--muted);
+}
+
+.rituals__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 0.3rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.07em;
+  color: var(--gold-600);
+  white-space: nowrap;
+  animation: nudgeX 2.6s ease-in-out infinite;
+}
+
+.rituals__viewport {
+  position: relative;
+  width: 100%;
+}
+
+.rituals__rail {
+  display: flex;
+  gap: clamp(1rem, 1.8vw, 1.5rem);
+  width: max-content;
+  padding-inline: clamp(1.4rem, 6vw, 5.5rem);
+  transform: translate3d(calc(var(--p, 0) * -1 * var(--travel, 0px)), 0, 0);
+  will-change: transform;
 }
 
 .ritual {
   position: relative;
   display: flex;
+  flex: 0 0 clamp(280px, 31vw, 420px);
   flex-direction: column;
   background: #fffdf7;
   border: 1px solid rgba(176, 139, 75, 0.22);
@@ -1156,34 +1230,92 @@ ol {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 52%, rgba(8, 27, 21, 0.45));
+  background: linear-gradient(180deg, rgba(8, 27, 21, 0.28), transparent 38%, rgba(8, 27, 21, 0.62));
+  pointer-events: none;
+}
+
+.ritual__num {
+  position: absolute;
+  top: 0.9rem;
+  left: 1.1rem;
+  z-index: 2;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--gold-200);
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
+}
+
+.ritual__caption {
+  position: absolute;
+  right: 1.1rem;
+  bottom: 0.9rem;
+  z-index: 2;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  color: rgba(240, 224, 188, 0.86);
 }
 
 .ritual__body {
   flex: 1;
-  padding: 1.4rem 1.5rem 1.7rem;
-}
-
-.ritual__num {
-  display: block;
-  font-family: var(--font-latin);
-  font-size: 0.78rem;
-  letter-spacing: 0.04em;
-  color: var(--red-700);
+  padding: 1.2rem 1.4rem 1.5rem;
 }
 
 .ritual__title {
-  margin: 0.15rem 0 0.55rem;
+  margin: 0 0 0.45rem;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 1.24rem;
+  font-size: 1.22rem;
   color: var(--green-900);
 }
 
 .ritual__text {
-  font-size: 0.86rem;
-  line-height: 1.95;
+  font-size: 0.85rem;
+  line-height: 1.9;
   color: var(--muted);
+}
+
+.rituals__foot {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding-inline: clamp(1.4rem, 6vw, 5.5rem);
+}
+
+.rituals__bar {
+  position: relative;
+  flex: 1;
+  height: 1px;
+  overflow: hidden;
+  background: rgba(176, 139, 75, 0.28);
+}
+
+.rituals__bar i {
+  position: absolute;
+  inset: 0;
+  background: var(--red-700);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.18s linear;
+}
+
+.rituals__count {
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+@media (min-width: 981px) {
+  .rituals--cine {
+    height: calc(100vh - var(--nav-h) + var(--travel, 0px));
+  }
+
+  .rituals__rail .ritual.reveal {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -1594,55 +1726,138 @@ body.lightbox-open {
 }
 
 /* --------------------------------------------------------------------------
-   15. Share
+   15. Contact
    -------------------------------------------------------------------------- */
-.share__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  max-width: 880px;
+.contact__card {
+  position: relative;
+  max-width: 720px;
   margin-inline: auto;
-}
-
-.share__card {
-  display: grid;
-  justify-items: center;
-  gap: 0.5rem;
-  padding: 1.8rem 1.3rem;
+  padding: clamp(2.1rem, 5vw, 3.4rem) clamp(1.3rem, 4vw, 3rem);
+  overflow: hidden;
   text-align: center;
-  background: #fffdf7;
-  border: 1px solid rgba(176, 139, 75, 0.24);
-  transition: transform 0.45s var(--ease), border-color 0.45s var(--ease),
-    box-shadow 0.45s var(--ease);
+  color: var(--gold-200);
+  background:
+    radial-gradient(120% 120% at 50% -10%, rgba(36, 88, 69, 0.9), rgba(8, 27, 21, 0.98)),
+    var(--green-900);
+  border: 1px solid rgba(226, 201, 145, 0.28);
+  box-shadow: var(--shadow-2);
+  isolation: isolate;
 }
 
-.share__card:hover {
-  transform: translateY(-5px);
-  border-color: var(--gold-400);
-  box-shadow: 0 26px 55px -45px rgba(14, 42, 32, 0.9);
+.contact__card::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(226, 201, 145, 0.13);
+  pointer-events: none;
 }
 
-.share__icon {
-  display: grid;
-  place-items: center;
-  width: 46px;
-  height: 46px;
+.contact__halo {
+  position: absolute;
+  top: -55%;
+  left: 50%;
+  z-index: -1;
+  width: 120%;
+  aspect-ratio: 1;
+  transform: translateX(-50%);
   border-radius: 50%;
-  background: rgba(176, 139, 75, 0.12);
-  color: var(--gold-600);
+  background: radial-gradient(closest-side, rgba(201, 169, 106, 0.16), transparent 72%);
+  pointer-events: none;
 }
 
-.share__card h3 {
+.contact__label {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: rgba(240, 224, 188, 0.62);
+}
+
+.contact__phone {
+  display: block;
+  margin: 0.5rem 0 0.15rem;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 1rem;
-  color: var(--green-900);
+  font-size: clamp(1.75rem, 5.4vw, 2.75rem);
+  line-height: 1.3;
+  color: var(--gold-200);
+  transition: color 0.3s var(--ease);
 }
 
-.share__card p {
-  font-size: 0.76rem;
-  line-height: 1.75;
-  color: var(--muted);
+.contact__phone:hover {
+  color: #fff;
+}
+
+.contact__note {
+  font-size: 0.72rem;
+  color: rgba(240, 224, 188, 0.5);
+}
+
+.contact__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.65rem;
+  margin-top: 1.6rem;
+}
+
+.contact__couple {
+  margin-top: 1.7rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(226, 201, 145, 0.15);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: rgba(240, 224, 188, 0.55);
+}
+
+/* --------------------------------------------------------------------------
+   16. Marquee band
+   -------------------------------------------------------------------------- */
+.marquee {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(0.9rem, 2vw, 1.35rem);
+  background: var(--green-950);
+  border-block: 1px solid rgba(226, 201, 145, 0.18);
+  color: var(--gold-300);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marqueeSlide 46s linear infinite;
+  will-change: transform;
+}
+
+.marquee--reverse .marquee__track {
+  animation-direction: reverse;
+}
+
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+
+.marquee__group {
+  display: flex;
+  flex: none;
+}
+
+.marquee__group span {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.1rem, 2vw, 2rem);
+  padding-right: clamp(1.1rem, 2vw, 2rem);
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2.1vw, 1.55rem);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.marquee__group i {
+  font-style: normal;
+  font-size: 0.5em;
+  color: var(--red-600);
 }
 
 /* --------------------------------------------------------------------------
@@ -1830,6 +2045,11 @@ body.lightbox-open {
 /* --------------------------------------------------------------------------
    18. Reveal animation
    -------------------------------------------------------------------------- */
+[data-parallax] {
+  translate: 0 var(--parallax, 0px);
+  will-change: translate;
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(26px);
@@ -1895,14 +2115,26 @@ body.lightbox-open {
   }
 }
 
+@keyframes marqueeSlide {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes nudgeX {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(6px);
+  }
+}
+
 /* --------------------------------------------------------------------------
    20. Responsive
    -------------------------------------------------------------------------- */
 @media (max-width: 1020px) {
-  .rituals__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .gal__grid {
     grid-auto-rows: 132px;
   }
@@ -1966,24 +2198,6 @@ body.lightbox-open {
 
   .venue__media img {
     aspect-ratio: 4 / 3.4;
-  }
-
-  .share__grid {
-    grid-template-columns: 1fr;
-    max-width: 420px;
-  }
-
-  .share__card {
-    grid-template-columns: auto 1fr;
-    justify-items: start;
-    align-items: center;
-    text-align: left;
-    padding: 1.2rem 1.4rem;
-    column-gap: 0.9rem;
-  }
-
-  .share__icon {
-    grid-row: span 2;
   }
 }
 
@@ -2084,6 +2298,53 @@ body.lightbox-open {
   .intro__corner {
     display: none;
   }
+
+  .rituals--cine {
+    height: auto;
+    padding-block: clamp(4rem, 9vw, 5.6rem);
+  }
+
+  .rituals__pin {
+    position: static;
+    height: auto;
+    gap: 2.2rem;
+    padding-block: 0;
+    overflow: visible;
+  }
+
+  .rituals__head {
+    padding-inline: clamp(1rem, 4.5vw, 2rem);
+  }
+
+  .rituals__head p {
+    font-size: 0.9rem;
+  }
+
+  .rituals__rail {
+    flex-direction: column;
+    width: auto;
+    gap: 1.15rem;
+    padding-inline: clamp(1rem, 4.5vw, 2rem);
+    transform: none;
+  }
+
+  .ritual {
+    flex: none;
+    width: 100%;
+  }
+
+  .ritual__media {
+    aspect-ratio: 16 / 10;
+  }
+
+  .rituals__hint,
+  .rituals__foot {
+    display: none;
+  }
+
+  .marquee__group span {
+    font-size: 1.05rem;
+  }
 }
 
 @media (max-width: 520px) {
@@ -2098,14 +2359,6 @@ body.lightbox-open {
 
   .hero__actions .btn {
     flex: 1 1 46%;
-  }
-
-  .rituals__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .ritual__media {
-    aspect-ratio: 16 / 10;
   }
 
   .invite__meta {
@@ -2174,6 +2427,18 @@ body.lightbox-open {
     opacity: 1;
     transform: none;
   }
+
+  [data-parallax] {
+    translate: none;
+  }
+
+  .marquee__track {
+    animation: none;
+  }
+
+  .rituals__hint {
+    animation: none;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -2218,11 +2483,6 @@ body.lightbox-open {
   letter-spacing: 0.18em;
 }
 
-.share__more {
-  margin-top: 1.9rem;
-  text-align: center;
-}
-
 .venue__qr-box {
   display: inline-block;
 }
@@ -2230,5 +2490,9 @@ body.lightbox-open {
 @media (max-width: 520px) {
   .invite__band {
     height: 10px;
+  }
+
+  .contact__actions .btn {
+    flex: 1 1 42%;
   }
 }

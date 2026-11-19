@@ -8,7 +8,7 @@ const LINKS = [
   { id: "schedule", label: "কাৰ্যসূচী" },
   { id: "venue", label: "বিয়াঘৰ" },
   { id: "gallery", label: "ফটো" },
-  { id: "share", label: "শেয়াৰ" },
+  { id: "contact", label: "যোগাযোগ" },
 ];
 
 export default function Navbar({ activeSection }) {

@@ -19,7 +19,7 @@ export default function Venue() {
         />
 
         <div className="venue__grid">
-          <figure className="venue__media reveal">
+          <figure className="venue__media reveal" data-parallax="-0.05">
             <img
               src={venue.image}
               alt="অসমৰ পৰম্পৰাগত বিয়াঘৰ"
