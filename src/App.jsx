@@ -54,10 +54,14 @@ export default function App() {
   useEffect(() => {
     if (!entered) return undefined;
 
-    const elements = Array.from(document.querySelectorAll(".reveal"));
+    const revealAll = () => {
+      document
+        .querySelectorAll(".reveal")
+        .forEach((element) => element.classList.add("is-visible"));
+    };
 
     if (typeof IntersectionObserver === "undefined") {
-      elements.forEach((element) => element.classList.add("is-visible"));
+      revealAll();
       return undefined;
     }
 
@@ -73,8 +77,28 @@ export default function App() {
       { threshold: 0.08, rootMargin: "0px 0px -6% 0px" }
     );
 
-    elements.forEach((element) => observer.observe(element));
-    return () => observer.disconnect();
+    // Nodes rendered after this effect (hot reloads, later renders) still need watching.
+    const watch = () => {
+      document.querySelectorAll(".reveal").forEach((element) => {
+        if (!element.classList.contains("is-visible")) observer.observe(element);
+      });
+    };
+
+    watch();
+
+    const mutations =
+      typeof MutationObserver === "undefined"
+        ? null
+        : new MutationObserver(watch);
+
+    if (mutations) {
+      mutations.observe(document.body, { childList: true, subtree: true });
+    }
+
+    return () => {
+      observer.disconnect();
+      if (mutations) mutations.disconnect();
+    };
   }, [entered]);
 
   // Depth pass: elements marked with data-parallax drift as the page scrolls.
