@@ -63,6 +63,8 @@ export default function Gallery() {
 
   return (
     <section className="chapter album" id="gallery" aria-labelledby="album-title">
+      <div className="album__glow" aria-hidden="true" />
+
       <div className="album__inner">
         <header className="album__head reveal">
           <span className="label">{gallery.label}</span>
@@ -150,6 +152,22 @@ export default function Gallery() {
               </article>
             );
           })}
+        </div>
+
+        <div className="album__rail" role="tablist" aria-label="All memories">
+          {images.map((image, itemIndex) => (
+            <button
+              key={image.id}
+              type="button"
+              role="tab"
+              aria-selected={itemIndex === index}
+              aria-label={image.note}
+              className={`album__thumb${itemIndex === index ? " is-active" : ""}`}
+              onClick={() => setIndex(itemIndex)}
+            >
+              <img src={image.src} alt="" loading="lazy" decoding="async" />
+            </button>
+          ))}
         </div>
 
         <p className="visually-hidden" aria-live="polite">

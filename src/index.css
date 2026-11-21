@@ -1147,8 +1147,25 @@ body.has-cursor .cursor {
 /* ---------- chapter 06 · the album ---------- */
 
 .album {
+  position: relative;
   background: var(--charcoal);
   overflow: hidden;
+}
+
+.album__glow {
+  position: absolute;
+  top: 6%;
+  right: -8%;
+  width: min(48rem, 72vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(201, 168, 118, 0.15),
+    transparent 66%
+  );
+  filter: blur(30px);
+  pointer-events: none;
 }
 
 .album__inner {
@@ -1255,7 +1272,7 @@ body.has-cursor .cursor {
 .album__stage {
   position: relative;
   justify-self: center;
-  width: min(29rem, 100%);
+  width: min(33rem, 100%);
   aspect-ratio: 4 / 5;
   touch-action: pan-y;
   cursor: grab;
@@ -1333,6 +1350,55 @@ body.has-cursor .cursor {
   color: rgba(12, 11, 9, 0.55);
 }
 
+.album__rail {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-top: clamp(1.4rem, 3vh, 2.4rem);
+  padding-bottom: 0.4rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.album__rail::-webkit-scrollbar {
+  display: none;
+}
+
+.album__thumb {
+  flex: 0 0 auto;
+  width: 4.3rem;
+  aspect-ratio: 4 / 5;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid transparent;
+  opacity: 0.42;
+  filter: grayscale(0.45);
+  transition:
+    opacity 0.4s var(--ease),
+    filter 0.4s var(--ease),
+    border-color 0.4s var(--ease),
+    transform 0.4s var(--ease);
+}
+
+.album__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.album__thumb:hover {
+  opacity: 0.85;
+  filter: none;
+  transform: translateY(-3px);
+}
+
+.album__thumb.is-active {
+  opacity: 1;
+  filter: none;
+  border-color: var(--bronze);
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -1360,7 +1426,17 @@ body.has-cursor .cursor {
   }
 
   .album__stage {
-    width: min(24rem, 92%);
+    width: min(26rem, 92%);
+  }
+
+  .album__rail {
+    justify-content: flex-start;
+    margin-inline: calc(var(--gutter) * -1);
+    padding-inline: var(--gutter);
+  }
+
+  .album__thumb {
+    width: 3.7rem;
   }
 }
 
