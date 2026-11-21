@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Invitation from "./components/Invitation";
 import Countdown from "./components/Countdown";
+import Interlude from "./components/Interlude";
 import Rituals from "./components/Rituals";
 import Schedule from "./components/Schedule";
 import Venue from "./components/Venue";
@@ -152,6 +153,7 @@ export default function App() {
             <Hero />
             <Invitation />
             <Countdown />
+            <Interlude />
             <Rituals />
             <Schedule />
             <Venue />

@@ -1297,7 +1297,6 @@ ol {
   background: var(--red-700);
   transform: scaleX(0);
   transform-origin: left center;
-  transition: transform 0.18s linear;
 }
 
 .rituals__count {
@@ -2485,6 +2484,99 @@ body.lightbox-open {
 
 .venue__qr-box {
   display: inline-block;
+}
+
+/* --------------------------------------------------------------------------
+   23. Interlude
+   -------------------------------------------------------------------------- */
+.interlude {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(430px, 68vh, 640px);
+  padding: clamp(4rem, 8vw, 6.5rem) 1.5rem;
+  overflow: hidden;
+  text-align: center;
+  color: var(--gold-200);
+  background: var(--green-950);
+  isolation: isolate;
+}
+
+.interlude__bg {
+  position: absolute;
+  inset: -14%;
+  z-index: -2;
+  background-position: center;
+  background-size: cover;
+  opacity: 0.5;
+}
+
+.interlude__veil {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(70% 62% at 50% 48%, rgba(8, 27, 21, 0.5), rgba(6, 22, 17, 0.94) 78%),
+    linear-gradient(180deg, rgba(6, 22, 17, 0.85), transparent 32%, rgba(6, 22, 17, 0.92));
+}
+
+.interlude__corner {
+  position: absolute;
+  width: clamp(68px, 8vw, 112px);
+  color: var(--gold-400);
+  opacity: 0.35;
+}
+
+.interlude__corner--tl {
+  top: clamp(14px, 2vw, 24px);
+  left: clamp(14px, 2vw, 24px);
+}
+
+.interlude__corner--br {
+  right: clamp(14px, 2vw, 24px);
+  bottom: clamp(14px, 2vw, 24px);
+  transform: rotate(180deg);
+}
+
+.interlude__inner {
+  max-width: 780px;
+}
+
+.interlude__kicker {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: var(--gold-300);
+}
+
+.interlude blockquote {
+  margin: 0.9rem 0 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.25rem, 3vw, 2.05rem);
+  line-height: 1.8;
+  letter-spacing: 0.004em;
+  text-shadow: 0 3px 24px rgba(0, 0, 0, 0.5);
+}
+
+.interlude__rule {
+  width: 180px;
+  height: 22px;
+  margin: 1.3rem auto 0;
+  color: var(--gold-500);
+}
+
+.interlude__meta {
+  display: block;
+  margin-top: 0.9rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: rgba(240, 224, 188, 0.6);
+}
+
+.interlude__meta i {
+  font-style: normal;
+  color: var(--gold-500);
 }
 
 @media (max-width: 520px) {
