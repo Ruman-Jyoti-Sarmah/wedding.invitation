@@ -45,7 +45,7 @@ export const WEDDING_DATA = {
     { id: "invitation", label: "The Invitation" },
     { id: "couple", label: "The Couple" },
     { id: "rituals", label: "Rituals" },
-    { id: "programme", label: "Programme" },
+    { id: "joy", label: "A Little Joy" },
     { id: "gallery", label: "Gallery" },
     { id: "venue", label: "Venue" },
   ],
@@ -202,47 +202,48 @@ export const WEDDING_DATA = {
     doneNote: "The vows have been spoken — thank you for your blessings.",
   },
 
-  programme: {
-    label: "Chapter 05 · Programme",
-    heading: "The Day, in Hours",
+  joy: {
+    label: "Chapter 05 — A Little Joy",
+    titleA: "SHOWER THEM",
+    titleB: "WITH BLESSINGS",
     intro:
-      "From the first turmeric blessing to the last farewell, here is how the day will unfold.",
-    items: [
+      "A courtyard blesses its newlyweds with petals and prayer. Tap the marigold and let a handful fall — one blessing at a time, for Joyanta and Bandita.",
+    action: "Shower a Blessing",
+    actionAgain: "Once More",
+    hint: "One tap, and the courtyard blooms.",
+    countLabel: "Blessings you have offered",
+    blessings: [
       {
-        time: "পুৱা",
-        timeEn: "Morning",
-        title: "Nahor & Teloniya",
-        text:
-          "The fragrant bath and the turmeric blessing, begun with the family at the wedding home.",
-        meta: "At the wedding home",
-        image: img("1741513599050-487ccfb86275", 1200),
+        as: "আপোনাৰ ঘৰ সদায় হাঁহিৰে ভৰি থাকক।",
+        en: "May your home always be full of laughter.",
       },
       {
-        time: "দুপৰীয়া",
-        timeEn: "Afternoon",
-        title: "The Wedding & Mala Loga",
-        text:
-          "At the auspicious hour, the garlands are exchanged and the seven seats are circled.",
-        meta: "The main mandap",
-        image: img("1705475388142-a2700c4caeb5", 1200),
+        as: "জীৱনৰ প্ৰতিটো পুৱা প্ৰেমেৰে আৰম্ভ হওক।",
+        en: "May every morning of your life begin with love.",
       },
       {
-        time: "আবেলি",
-        timeEn: "Late Afternoon",
-        title: "Alohi Xotkar",
-        text:
-          "A feast laid out for everyone who travelled — relatives, neighbours and old friends.",
-        meta: "The dining hall",
-        image: img("1608581821197-28646ed9ebe3", 1200),
+        as: "দুয়ো মিলি এশ বছৰ জীয়াই থাকক।",
+        en: "May the two of you live a hundred years together.",
       },
       {
-        time: "সন্ধিয়া",
-        timeEn: "Evening",
-        title: "Koinya Biday",
-        text:
-          "Blessings and tears at the doorway as the bride says goodbye to her childhood home.",
-        meta: "The farewell hour",
-        image: img("1591946522651-90fbace43004", 1200),
+        as: "আপোনাৰ পথত কেতিয়াও অন্ধকাৰ নাহক।",
+        en: "May darkness never find your path.",
+      },
+      {
+        as: "ভালপোৱা আৰু বিশ্বাসে আপোনাৰ ঘৰ ৰক্ষা কৰক।",
+        en: "May love and trust keep your home.",
+      },
+      {
+        as: "পৰিয়ালৰ আশীৰ্বাদ সদায় লগত থাকক।",
+        en: "May the blessings of your families always walk beside you.",
+      },
+      {
+        as: "আপোনাৰ সপোনবোৰ সঁচা হওক।",
+        en: "May your dreams come true, one by one.",
+      },
+      {
+        as: "শুকান দিনতো আপোনাৰ মাটি সেউজীয়া থাকক।",
+        en: "May your soil stay green even through dry days.",
       },
     ],
   },

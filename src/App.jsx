@@ -7,7 +7,7 @@ import Invitation from "./components/Invitation";
 import Couple from "./components/Couple";
 import Rituals from "./components/Rituals";
 import Celebration from "./components/Celebration";
-import Schedule from "./components/Schedule";
+import Blessings from "./components/Blessings";
 import Gallery from "./components/Gallery";
 import Venue from "./components/Venue";
 import Finale from "./components/Finale";
@@ -154,7 +154,7 @@ export default function App() {
             <Couple />
             <Rituals />
             <Celebration />
-            <Schedule />
+            <Blessings />
             <Gallery />
             <Venue />
           </main>
