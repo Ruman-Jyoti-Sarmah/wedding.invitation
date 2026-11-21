@@ -1,10 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
 import { WEDDING_DATA } from "../data/weddingData";
-import { SectionDecor, SectionHeading } from "./Ornaments";
 
 export default function Gallery() {
-  const images = WEDDING_DATA.galleryImages;
+  const { gallery } = WEDDING_DATA;
+  const images = gallery.items;
   const [openIndex, setOpenIndex] = useState(null);
   const isOpen = openIndex !== null;
 
@@ -40,24 +39,21 @@ export default function Gallery() {
 
   return (
     <>
-      <section className="section section--paper gal" id="gallery">
-        <SectionDecor />
+      <section className="chapter gallery" id="gallery">
+        <header className="gallery__head reveal">
+          <span className="label">{gallery.label}</span>
+          <h2>{gallery.heading}</h2>
+          <p>{gallery.intro}</p>
+        </header>
 
-        <div className="container">
-          <SectionHeading
-            kicker="ফটো"
-            title={WEDDING_DATA.galleryHeading}
-            subtitle={WEDDING_DATA.galleryIntro}
-          />
-
-          <div className="gal__grid">
-            {images.map((image, index) => (
+        <div className="gallery__flow">
+          {images.map((image, index) => (
+            <figure className={`gitem gitem--${index + 1} reveal`} key={image.id}>
               <button
                 type="button"
-                key={image.id}
-                className="gal__item reveal"
+                data-cursor="view"
                 onClick={() => setOpenIndex(index)}
-                aria-label={`ডাঙৰ কৰি চাওক: ${image.caption}`}
+                aria-label={`View ${image.note} larger`}
               >
                 <img
                   src={image.src}
@@ -65,70 +61,75 @@ export default function Gallery() {
                   loading="lazy"
                   decoding="async"
                 />
-                <span className="gal__cap">{image.caption}</span>
-                <span className="gal__expand" aria-hidden="true">
-                  <Maximize2 size={12} strokeWidth={1.8} />
-                </span>
               </button>
-            ))}
-          </div>
+              <figcaption>
+                {image.caption} <span>· {image.note}</span>
+              </figcaption>
+            </figure>
+          ))}
         </div>
       </section>
 
-      {isOpen && (
-        <div
-          className="lightbox"
-          role="dialog"
-          aria-modal="true"
-          aria-label="ফটো চোৱাৰ স্থান"
+      <div
+        className={`lightbox ${isOpen ? "lightbox--open" : ""}`}
+        role="dialog"
+        aria-modal={isOpen ? "true" : "false"}
+        aria-label="Photographs"
+        onClick={close}
+        aria-hidden={!isOpen}
+      >
+        <button
+          type="button"
+          className="lightbox__close"
           onClick={close}
+          aria-label="Close"
         >
-          <button
-            type="button"
-            className="lightbox__close"
-            onClick={close}
-            aria-label="বন্ধ কৰক"
-          >
-            <X size={20} strokeWidth={1.8} />
-          </button>
+          Close
+        </button>
 
-          <button
-            type="button"
-            className="lightbox__nav lightbox__nav--prev"
-            onClick={(event) => {
-              event.stopPropagation();
-              prev();
-            }}
-            aria-label="আগৰ ফটো"
-          >
-            <ChevronLeft size={22} strokeWidth={1.8} />
-          </button>
+        <button
+          type="button"
+          className="lightbox__nav lightbox__nav--prev"
+          onClick={(event) => {
+            event.stopPropagation();
+            prev();
+          }}
+          aria-label="Previous photograph"
+        >
+          ←
+        </button>
 
-          <button
-            type="button"
-            className="lightbox__nav lightbox__nav--next"
-            onClick={(event) => {
-              event.stopPropagation();
-              next();
-            }}
-            aria-label="পৰৱৰ্তী ফটো"
-          >
-            <ChevronRight size={22} strokeWidth={1.8} />
-          </button>
+        <button
+          type="button"
+          className="lightbox__nav lightbox__nav--next"
+          onClick={(event) => {
+            event.stopPropagation();
+            next();
+          }}
+          aria-label="Next photograph"
+        >
+          →
+        </button>
 
-          <figure className="lightbox__figure" onClick={(event) => event.stopPropagation()}>
-            <img
-              key={images[openIndex].id}
-              className="lightbox__img"
-              src={images[openIndex].src}
-              alt={images[openIndex].alt}
-            />
-            <figcaption className="lightbox__cap">
-              {images[openIndex].caption} · {openIndex + 1} / {images.length}
+        {isOpen && (
+          <figure
+            className="lightbox__stage"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <img src={images[openIndex].src} alt={images[openIndex].alt} />
+            <figcaption className="lightbox__caption">
+              <span className="label">
+                {images[openIndex].caption} · {images[openIndex].note}
+              </span>
+              <span className="lightbox__count">
+                {`${String(openIndex + 1).padStart(2, "0")} / ${String(
+                  images.length
+                ).padStart(2, "0")}`}
+              </span>
             </figcaption>
           </figure>
-        </div>
-      )}
+        )}
+      </div>
     </>
   );
 }

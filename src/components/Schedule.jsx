@@ -1,38 +1,43 @@
 import { WEDDING_DATA } from "../data/weddingData";
-import { SectionDecor, SectionHeading } from "./Ornaments";
 
 export default function Schedule() {
+  const { programme } = WEDDING_DATA;
+
   return (
-    <section className="section section--paper sched" id="schedule">
-      <SectionDecor />
+    <section className="chapter programme" id="programme">
+      <div className="programme__grid">
+        <header className="programme__head reveal">
+          <span className="label">{programme.label}</span>
+          <h2>{programme.heading}</h2>
+          <p>{programme.intro}</p>
+        </header>
 
-      <div className="container">
-        <SectionHeading
-          kicker="কাৰ্যসূচী"
-          title={WEDDING_DATA.scheduleHeading}
-          subtitle={WEDDING_DATA.scheduleDate}
-        />
-
-        <div className="sched__list">
-          {WEDDING_DATA.schedule.map((item, index) => (
-            <div
-              className={`sched__item reveal reveal-delay-${(index % 4) + 1}`}
-              key={item.title}
-            >
-              <div className="sched__time">{item.time}</div>
-
-              <div className="sched__marker" aria-hidden="true">
-                <span />
-              </div>
-
-              <div className="sched__card">
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-                <span className="sched__meta">{item.meta}</span>
-              </div>
+        {programme.items.map((item, index) => (
+          <figure className="daycard reveal" key={item.title}>
+            <div className="daycard__imgwrap">
+              <img
+                src={item.image}
+                alt={`${item.title} — ${item.meta}`}
+                loading="lazy"
+                decoding="async"
+                data-parallax="0.04"
+              />
             </div>
-          ))}
-        </div>
+
+            <figcaption>
+              <span className="daycard__time">
+                {item.timeEn}
+                <em> · {item.time}</em>
+              </span>
+              <h3>
+                <span className="daycard__num">{`0${index + 1}`}</span>
+                {item.title}
+              </h3>
+              <p>{item.text}</p>
+              <span className="label daycard__meta">{item.meta}</span>
+            </figcaption>
+          </figure>
+        ))}
       </div>
     </section>
   );

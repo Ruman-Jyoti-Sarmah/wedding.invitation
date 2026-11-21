@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { Volume2, VolumeX } from "lucide-react";
 import { MUSIC_VIDEO_ID } from "../data/weddingData";
 
 const EMBED_URL =
@@ -18,7 +17,7 @@ export default function MusicControl() {
     );
   };
 
-  // The song starts muted (allowed by browsers) and is unmuted on the guest's
+  // The song starts muted (browsers allow this) and is unmuted on the guest's
   // first interaction, so the invitation opens with music without a hard block.
   useEffect(() => {
     const start = () => {
@@ -52,12 +51,12 @@ export default function MusicControl() {
     if (playing) {
       send("pauseVideo");
       setPlaying(false);
-    } else {
-      send("unMute");
-      send("setVolume", [45]);
-      send("playVideo");
-      setPlaying(true);
+      return;
     }
+    send("unMute");
+    send("setVolume", [45]);
+    send("playVideo");
+    setPlaying(true);
   };
 
   return (
@@ -66,7 +65,7 @@ export default function MusicControl() {
         ref={frameRef}
         className="music__frame"
         src={EMBED_URL}
-        title="বিয়াৰ গীত"
+        title="Wedding music"
         allow="autoplay; encrypted-media"
         tabIndex={-1}
         aria-hidden="true"
@@ -77,18 +76,15 @@ export default function MusicControl() {
         className={`music__btn ${playing ? "is-on" : ""}`}
         onClick={toggle}
         aria-pressed={playing}
-        aria-label={playing ? "সংগীত বন্ধ কৰক" : "সংগীত বজাওক"}
+        aria-label={playing ? "Pause the music" : "Play the music"}
+        data-cursor="link"
       >
-        {playing ? (
-          <Volume2 size={18} strokeWidth={1.7} aria-hidden="true" />
-        ) : (
-          <VolumeX size={18} strokeWidth={1.7} aria-hidden="true" />
-        )}
+        <span className="music__bars" aria-hidden="true">
+          <i />
+          <i />
+          <i />
+        </span>
       </button>
-
-      <span className="music__hint" aria-hidden="true">
-        {playing ? "সংগীত চলি আছে" : "সংগীত বজাওক"}
-      </span>
     </div>
   );
 }

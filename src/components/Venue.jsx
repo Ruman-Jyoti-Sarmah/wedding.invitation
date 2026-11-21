@@ -1,106 +1,85 @@
 import { QRCodeSVG } from "qrcode.react";
-import { CalendarDays, Clock, MapPin, Navigation, QrCode } from "lucide-react";
 import { WEDDING_DATA } from "../data/weddingData";
-import { SectionDecor, SectionHeading } from "./Ornaments";
 
 export default function Venue() {
-  const { venue } = WEDDING_DATA;
+  const { venue, rsvp } = WEDDING_DATA;
 
   return (
-    <section className="section section--green venue" id="venue">
-      <SectionDecor dark />
+    <section className="chapter location" id="venue">
+      <div className="location__inner">
+        <div className="location__title reveal">
+          <span className="label">{venue.label}</span>
 
-      <div className="container">
-        <SectionHeading
-          light
-          kicker={venue.kicker}
-          title={venue.name}
-          subtitle={venue.note}
-        />
+          <h2>
+            {venue.titleA}
+            <br />
+            <em>{venue.titleB}</em>
+          </h2>
 
-        <div className="venue__grid">
-          <figure className="venue__media reveal" data-parallax="-0.05">
-            <img
-              src={venue.image}
-              alt="অসমৰ পৰম্পৰাগত বিয়াঘৰ"
-              loading="lazy"
-              decoding="async"
-            />
-            <figcaption>
-              <MapPin size={14} strokeWidth={1.7} aria-hidden="true" />
-              {venue.imageCaption}
-            </figcaption>
-          </figure>
+          <p className="location__body">{venue.body}</p>
 
-          <div className="venue__card reveal reveal-delay-1">
-            <span className="venue__label">ঠিকনা</span>
-            <h3 className="venue__name">{venue.subtitle}</h3>
-            <p className="venue__address">{venue.address}</p>
-
-            <ul className="venue__facts">
-              <li>
-                <CalendarDays size={15} strokeWidth={1.6} aria-hidden="true" />
-                {WEDDING_DATA.dateLabel} · {WEDDING_DATA.weekday}
-              </li>
-              <li>
-                <Clock size={15} strokeWidth={1.6} aria-hidden="true" />
-                {WEDDING_DATA.timeLabel}
-              </li>
-              <li>
-                <MapPin size={15} strokeWidth={1.6} aria-hidden="true" />
-                {WEDDING_DATA.assameseDate} · {WEDDING_DATA.placeLabel}
-              </li>
-            </ul>
-
-            <div className="venue__actions">
-              <a
-                className="btn btn--gold"
-                href={venue.mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Navigation size={15} strokeWidth={1.7} aria-hidden="true" />
-                মেপত চাওক
-              </a>
-              <a
-                className="btn btn--ghost"
-                href={venue.mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <MapPin size={15} strokeWidth={1.7} aria-hidden="true" />
-                পথ নিৰ্দেশ
-              </a>
-            </div>
-
-            <div className="venue__qr">
-              <span className="venue__qr-box">
-                <QRCodeSVG
-                  value={venue.mapsUrl}
-                  size={104}
-                  bgColor="#FBF6EA"
-                  fgColor="#0E2A20"
-                  level="M"
-                  title="বিয়াঘৰৰ অৱস্থান"
-                />
-              </span>
-              <div>
-                <strong>
-                  <QrCode
-                    size={14}
-                    strokeWidth={1.7}
-                    aria-hidden="true"
-                    style={{ display: "inline", verticalAlign: "-2px", marginRight: 6 }}
-                  />
-                  স্কেন কৰি ঠাই চাওক
-                </strong>
-                <span>
-                  এই QR কোডটো স্কেন কৰিলে Google Maps ত আমাৰ বিয়াঘৰৰ অৱস্থান খুলিব।
-                </span>
+          <div className="location__facts">
+            {venue.facts.map((fact) => (
+              <div className="location__fact" key={fact.label}>
+                <span className="label">{fact.label}</span>
+                <span>{fact.value}</span>
               </div>
+            ))}
+          </div>
+
+          <div className="location__actions">
+            <a
+              className="btn btn--solid"
+              href={venue.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Plan Your Arrival
+            </a>
+            <a
+              className="btn"
+              href={rsvp.phoneHref}
+              aria-label={`Call ${rsvp.phone}`}
+            >
+              Call Us
+            </a>
+          </div>
+
+          <div className="location__qr">
+            <span className="location__qr-tile">
+              <QRCodeSVG
+                value={venue.mapsUrl}
+                size={92}
+                bgColor="#f2ede3"
+                fgColor="#0c0b09"
+                level="M"
+                title="Wedding venue location"
+              />
+            </span>
+            <div>
+              <strong>{venue.qrLabel}</strong>
+              <span>{venue.qrNote}</span>
             </div>
           </div>
         </div>
+
+        <figure className="location__map">
+          <div className="location__mapwrap">
+            <img
+              src={venue.image}
+              alt={venue.imageCaption}
+              loading="lazy"
+              decoding="async"
+              data-parallax="0.04"
+            />
+          </div>
+          <span
+            className="location__pin"
+            style={{ top: venue.mapPin.top, left: venue.mapPin.left }}
+            aria-hidden="true"
+          />
+          <figcaption className="label">{venue.imageCaption}</figcaption>
+        </figure>
       </div>
     </section>
   );

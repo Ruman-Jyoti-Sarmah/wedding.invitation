@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { ArrowUp } from "lucide-react";
 
 export default function BackToTop() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 640);
+    const onScroll = () => setVisible(window.scrollY > window.innerHeight * 1.4);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -14,11 +13,12 @@ export default function BackToTop() {
   return (
     <button
       type="button"
-      className={`back-to-top ${visible ? "is-visible" : ""}`}
+      className={`totop ${visible ? "is-visible" : ""}`}
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      aria-label="ওপৰলৈ যাওক"
+      aria-label="Back to top"
     >
-      <ArrowUp size={17} strokeWidth={1.8} />
+      <span aria-hidden="true">↑</span>
+      <span className="totop__word">Top</span>
     </button>
   );
 }

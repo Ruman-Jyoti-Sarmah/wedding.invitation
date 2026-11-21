@@ -5,232 +5,354 @@ export const MUSIC_VIDEO_ID = "K49-UyBSbOo";
 const img = (id, w = 1400) =>
   `https://images.unsplash.com/photo-${id}?q=80&w=${w}&auto=format&fit=crop`;
 
+export const IMAGES = {
+  hero: img("1661142175513-a5f0871f1ad1", 2200),
+  introA: img("1640404967780-5963a0ffbe57", 1200),
+  introB: img("1684472993236-b605bb80ca0b", 1000),
+  couple: img("1705475388142-a2700c4caeb5", 1800),
+  coupleDetail: img("1611489704434-2612dc89c992", 1000),
+  celebration: img("1635192592106-77a5aacbe1a3", 2000),
+  venue: img("1621789547000-b74d615ce6c5", 1400),
+  finale: img("1591946522651-90fbace43004", 2200),
+};
+
 export const WEDDING_DATA = {
   groom: {
-    name: "জয়ন্ত",
-    fullName: "জয়ন্ত",
-    initial: "জ",
+    name: "Joyanta",
+    assamese: "জয়ন্ত",
+    initial: "J",
   },
   bride: {
-    name: "বন্দিতা",
-    fullName: "বন্দিতা",
-    initial: "ব",
+    name: "Bandita",
+    assamese: "বন্দিতা",
+    initial: "B",
   },
-  coupleShort: "জয়ন্ত ♥ বন্দিতা",
-  coupleInitials: "জ & ব",
+  coupleShort: "Joyanta & Bandita",
+  coupleInitials: "J & B",
+  monogram: "J & B",
 
-  // Date — from the invitation card
-  dateLabel: "২২ নৱেম্বৰ ২০২৬",
-  weekday: "দেওবাৰ",
+  dateLabel: "22 November 2026",
+  dateShort: "22 · 11 · 2026",
+  weekday: "Sunday",
+  weekdayAssamese: "দেওবাৰ",
   assameseDate: "৫ আঘোণ",
-  timeLabel: "শুভ লগ্নৰ সময় পৰিয়ালে জনাব",
-  placeLabel: "ধেমাজি, অসম",
+  timeLabel: "Muhurat to be announced by the family",
+  placeLabel: "Dhemaji, Assam",
 
-  // Hero
-  heroEyebrow: "পৰিয়ালসকলৰ আশীৰ্বাদেৰে",
-  heroLine:
-    "আমাৰ জীৱনৰ আটাইতকৈ সুন্দৰ দিনটোত আপোনাৰ উপস্থিতি আৰু আশীৰ্বাদ বিচাৰিছোঁ।",
-
-  // Invitation
-  invitationKicker: "নিমন্ত্ৰণী",
-  invitationTo: "স্নেহৰ আত্মীয়, বন্ধু আৰু শুভাকাঙ্ক্ষীসকললৈ,",
-  invitationLede:
-    "আমাৰ জীৱনৰ এই শুভক্ষণত আপোনালোক সকলোকে সাদৰে আমন্ত্ৰণ জনাইছোঁ।",
-  invitationBody:
-    "জয়ন্ত আৰু বন্দিতাৰ শুভ বিবাহ উপলক্ষে আয়োজিত মাংগলিক অনুষ্ঠানত আপোনালোকৰ উপস্থিতি আৰু আশীৰ্বাদ আমাৰ বাবে পৰম সৌভাগ্যৰ বিষয় হ'ব। আপোনালোকৰ আগমনে আমাৰ বিয়াঘৰ উজলি উঠিব।",
-
-  // Countdown
-  countdownHeading: "শুভক্ষণলৈ বাকী",
-  countdownNote: "২২ নৱেম্বৰ ২০২৬ · দেওবাৰ · ধেমাজি",
-
-  // Rituals
-  ritualsHeading: "বিয়াৰ পৱিত্ৰ ৰীতি",
-  ritualsIntro:
-    "অসমৰ পৰম্পৰা আৰু সংস্কৃতিৰে ভৰা আমাৰ বিয়াৰ কেইটামান পৱিত্ৰ ৰীতি — প্ৰতিটোৰে আছে নিজৰ সুকীয়া অৰ্থ আৰু আশীৰ্বাদ।",
-  rituals: [
-    {
-      id: "joron",
-      name: "জোৰোণ",
-      number: "০১",
-      text: "দৰা-কইনাৰ ঘৰলৈ তামোল-পাণ, ফল-মূল আৰু উপহাৰ লৈ যোৱা শুভ আৰম্ভণি — সম্পৰ্কৰ প্ৰথম মধুৰ পদক্ষেপ।",
-      image: img("1649667220047-66a31d18537d", 1000),
-      caption: "তামোল-পাণ",
-    },
-    {
-      id: "teloniya",
-      name: "তেলনীয়া",
-      number: "০২",
-      text: "হলধি, তেল আৰু পানীৰে কৰা শুভ সংস্কাৰ — বিয়াৰ আগে আগে শৰীৰ আৰু মন পৱিত্ৰ কৰাৰ পুৰণি ৰীতি।",
-      image: img("1741513599050-487ccfb86275", 1000),
-      caption: "হলধি",
-    },
-    {
-      id: "nahor",
-      name: "নাহৰ",
-      number: "০৩",
-      text: "নাহৰ ফুল আৰু মিহি সুগন্ধি পানীৰে গা ধুওৱাৰ পৱিত্ৰ ৰীতি, যিয়ে কইনা-দৰাক শুভক্ষণলৈ সাজু কৰে।",
-      image: img("1684472993236-b605bb80ca0b", 1000),
-      caption: "নাহৰ ফুল",
-    },
-    {
-      id: "mala",
-      name: "মালা লগা",
-      number: "০৪",
-      text: "দৰা-কইনাই পৰস্পৰে ফুলৰ মালা পিন্ধাই আজীৱনৰ বাবে লগত থকাৰ প্ৰতিজ্ঞা বান্ধে — বিয়াৰ আটাইতকৈ মধুৰ মুহূৰ্ত।",
-      image: img("1705475388142-a2700c4caeb5", 1000),
-      caption: "ফুলৰ মালা",
-    },
-    {
-      id: "saat",
-      name: "সাত বিচনী",
-      number: "০৫",
-      text: "সাতটা বিচনীত কইনাক সাতবাৰ স্থান সলনি কৰি কৰা ৰীতি — সাত জনমৰ সম্পৰ্কৰ আশীৰ্বাদৰ প্ৰতীক।",
-      image: img("1611489704434-2612dc89c992", 1000),
-      caption: "সাত বিচনী",
-    },
-    {
-      id: "biday",
-      name: "কইনা বিদায়",
-      number: "০৬",
-      text: "পিতৃগৃহৰ পৰা চকুপানী আৰু আশীৰ্বাদেৰে বিদায় লৈ কইনাৰ নতুন জীৱনৰ আৰম্ভণি।",
-      image: img("1591946522651-90fbace43004", 1000),
-      caption: "বিদায়ৰ দুৱাৰ",
-    },
+  navLinks: [
+    { id: "invitation", label: "The Invitation" },
+    { id: "couple", label: "The Couple" },
+    { id: "rituals", label: "Rituals" },
+    { id: "programme", label: "Programme" },
+    { id: "gallery", label: "Gallery" },
+    { id: "venue", label: "Venue" },
   ],
 
-  // Schedule
-  scheduleHeading: "বিয়াৰ দিনৰ কাৰ্যসূচী",
-  scheduleDate: "২২ নৱেম্বৰ ২০২৬ · দেওবাৰ",
-  schedule: [
-    {
-      time: "পুৱা",
-      title: "নাহৰ আৰু তেলনীয়া",
-      text: "পৱিত্ৰ নাহৰ-পানী আৰু হলধিৰে শুভ সংস্কাৰ, পৰিয়ালৰ সৈতে আৰম্ভণি।",
-      meta: "বিয়াঘৰত",
-    },
-    {
-      time: "দুপৰীয়া",
-      title: "বিয়া আৰু মালা লগা",
-      text: "শুভ লগ্নত দৰা-কইনাৰ মালা লগা আৰু সাত বিচনীৰ ৰীতি।",
-      meta: "মুখ্য মণ্ডপ",
-    },
-    {
-      time: "আবেলি",
-      title: "আলহী সৎকাৰ",
-      text: "আত্মীয়-স্বজন আৰু শুভাকাঙ্ক্ষীসকলৰ সৈতে মিলি ভোজ আৰু আন্তৰিক আলাপ।",
-      meta: "ভোজনশালা",
-    },
-    {
-      time: "সন্ধিয়া",
-      title: "কইনা বিদায়",
-      text: "আশীৰ্বাদ আৰু চকুপানীৰ মাজেৰে কইনা বিদায় — এক ভাবপূৰ্ণ সমাপ্তি।",
-      meta: "বিদায় ক্ষণ",
-    },
-  ],
-
-  // Venue
-  venue: {
-    kicker: "বিয়াঘৰ",
-    name: "আমাৰ বিয়াঘৰ",
-    subtitle: "গোপক গাঁও, ধেমাজি",
-    address: "মাদাৰ্ছ প্ৰাইড স্কুলৰ ওচৰত, গোপক গাঁও, ধেমাজি, অসম, ভাৰত",
-    note:
-      "ধেমাজিৰ গোপক গাঁৱত আমাৰ বিয়াঘৰলৈ আপোনাক সাদৰে নিমন্ত্ৰণ জনাইছোঁ। ঠিকনা আৰু পথৰ বাবে তলৰ মেপ বা QR কোড ব্যৱহাৰ কৰক।",
-    mapsUrl:
-      "https://www.google.com/maps/search/?api=1&query=Gopak+Gaon%2C+Dhemaji%2C+Assam%2C+India",
-    image: img("1640404967780-5963a0ffbe57", 1200),
-    imageCaption: "বিয়াঘৰ · ধেমাজি",
-  },
-
-  contact: {
-    kicker: "যোগাযোগ",
-    heading: "আমাক লগ ধৰক",
-    intro:
-      "বিয়াৰ ঠাই, পথ বা যিকোনো কথাৰ বাবে আমাক ফোন বা WhatsApp কৰিব পাৰে।",
-    label: "যোগাযোগ",
-    name: "বিয়া সম্পৰ্কীয় যিকোনো কথাৰ বাবে",
+  rsvp: {
+    label: "RSVP",
     phone: "+91 70993 00434",
     phoneHref: "tel:+917099300434",
     whatsappHref: "https://wa.me/917099300434",
-    note: "পুৱা ৮ বজাৰ পৰা ৰাতি ৯ বজালৈ",
+    note: "Kindly let us know by 10 November 2026 · 8 AM – 9 PM",
   },
 
-  // Gallery
-  galleryHeading: "বিয়াৰ ৰং",
-  galleryIntro:
-    "তামোল-পাণ, গাঁধাফুল, মাটিৰ চাকি আৰু কলপাত — আমাৰ বিয়াৰ সৰল ৰূপ।",
-  galleryImages: [
-    {
-      id: "g1",
-      src: img("1608581821197-28646ed9ebe3", 1200),
-      alt: "কলপাত আৰু সেউজীয়া পৰিৱেশ",
-      caption: "কলপাত",
-    },
-    {
-      id: "g2",
-      src: img("1442458017215-285b83f65851", 1200),
-      alt: "গাঁধাফুলৰ দম",
-      caption: "গাঁধাফুল",
-    },
-    {
-      id: "g3",
-      src: img("1605378229010-11aedbb01b24", 1200),
-      alt: "মাটিৰ চাকি জ্বলি থকা দৃশ্য",
-      caption: "মাটিৰ চাকি",
-    },
-    {
-      id: "g4",
-      src: img("1528207620916-db0d5aab17cb", 1200),
-      alt: "কলপাতৰ শিৰা",
-      caption: "পাতৰ শিৰা",
-    },
-    {
-      id: "g5",
-      src: img("1607512566084-a20ed291d623", 1200),
-      alt: "গাঁধাফুলৰ মালাৰ পৰ্দা",
-      caption: "মালাৰ পৰ্দা",
-    },
-    {
-      id: "g6",
-      src: img("1578981320111-c7e9426cd6e8", 1200),
-      alt: "নদীৰ বুকুত নাৱ",
-      caption: "ব্ৰহ্মপুত্ৰৰ বুকুত",
-    },
-    {
-      id: "g7",
-      src: img("1621789547000-b74d615ce6c5", 1200),
-      alt: "নদীৰ ওপৰত দীঘল দলং",
-      caption: "নদীৰ দলং",
-    },
-    {
-      id: "g8",
-      src: img("1618508410458-761c490010ad", 1200),
-      alt: "এপাহ সেউজীয়া কলপাত",
-      caption: "সেউজীয়া",
-    },
-  ],
+  hero: {
+    est: "Est. 2026 · Dhemaji, Assam",
+    names: "The wedding of Joyanta & Bandita",
+    titleA: "TWO SOULS",
+    titleB: "ONE FOREVER",
+    support:
+      "An invitation from the banks of the Brahmaputra — where two families, two traditions and a lifetime of blessings meet beneath the November sky.",
+    assamese:
+      "আমাৰ জীৱনৰ আটাইতকৈ সুন্দৰ দিনটোত আপোনাৰ উপস্থিতি আৰু আশীৰ্বাদ বিচাৰিছোঁ।",
+    date: "22 · 11 · 2026",
+    scroll: "Scroll",
+  },
 
-  // Marquee band
-  marqueeWords: [
-    "জয়ন্ত ♥ বন্দিতা",
-    "২২ নৱেম্বৰ ২০২৬",
-    "শুভ বিবাহ",
-    "ধেমাজি · অসম",
-    "দেওবাৰ",
-  ],
+  intro: {
+    label: "Chapter 01 — The Invitation",
+    titleA: "A VOW WOVEN",
+    titleB: "IN TRADITION",
+    body:
+      "With the blessings of our families, we invite you to the wedding of Joyanta and Bandita. A morning of Assamese ritual, a courtyard full of laughter, and a promise that begins a new home.",
+    assamese:
+      "স্নেহৰ আত্মীয়, বন্ধু আৰু শুভাকাঙ্ক্ষীসকললৈ — আমাৰ শুভ বিবাহত আপোনালোক সকলোকে সাদৰে আমন্ত্ৰণ জনাইছোঁ।",
+    signature: "With love — both our families",
+    images: [
+      {
+        src: IMAGES.introA,
+        alt: "A quiet courtyard dressed for a wedding",
+        caption: "The courtyard, morning light",
+      },
+      {
+        src: IMAGES.introB,
+        alt: "Fresh flowers gathered for the ceremony",
+        caption: "Flowers for the garland",
+      },
+    ],
+  },
 
-  // Closing
-  closingQuote:
-    "আপোনাৰ উপস্থিতি আৰু আশীৰ্বাদ — এই দুয়োটা আমাৰ বাবে আটাইতকৈ মূল্যবান উপহাৰ।",
-  closingSignoff: "আন্তৰিকতাৰে — জয়ন্ত আৰু বন্দিতা",
-  closingFooter: "জয়ন্ত ♥ বন্দিতা · ২২ নৱেম্বৰ ২০২৬ · ধেমাজি, অসম",
-};
+  couple: {
+    label: "Chapter 02 — The Couple",
+    title: "WOVEN FROM TRADITION & TENDERNESS",
+    detailCaption: "The garland, the blessing",
+    facts: [
+      {
+        label: "The Groom",
+        title: "Joyanta",
+        text:
+          "The groom, arriving with his family, a gamosa and a heart full of promises.",
+      },
+      {
+        label: "The Bride",
+        title: "Bandita",
+        text:
+          "The bride, carrying her grandmother's blessings and a quiet, steady joy.",
+      },
+      {
+        label: "The Vow",
+        title: "22 Nov 2026",
+        text: "Gopak Gaon, Dhemaji · Assam. Sunday, in the morning.",
+      },
+    ],
+  },
 
-export const COLORS = {
-  deepGreen: "#0E2A20",
-  forestGreen: "#1A4635",
-  vermilion: "#9A2A21",
-  gold: "#C9A96A",
-  cream: "#FBF6EA",
-  ink: "#22271F",
+  rituals: {
+    label: "Chapter 03 · Rituals",
+    heading: "The Sacred Rites",
+    intro:
+      "Assamese weddings unfold as a sequence of small, tender ceremonies — each one a blessing, each one a threshold.",
+    hint: "Scroll",
+    count: "Six rites",
+    items: [
+      {
+        id: "joron",
+        name: "জোৰোণ",
+        english: "The First Gift",
+        number: "01",
+        text:
+          "Betel leaf, areca nut and fruit carried to the bride's home — the first warm step of a new relationship.",
+        image: img("1649667220047-66a31d18537d", 1000),
+        caption: "Betel leaf & areca",
+      },
+      {
+        id: "teloniya",
+        name: "তেলনীয়া",
+        english: "The Anointing",
+        number: "02",
+        text:
+          "Turmeric, oil and water — the old rite that readies body and mind for the days ahead.",
+        image: img("1741513599050-487ccfb86275", 1000),
+        caption: "Turmeric",
+      },
+      {
+        id: "nahor",
+        name: "নাহৰ",
+        english: "The Fragrant Bath",
+        number: "03",
+        text:
+          "Water steeped with nahor blossom, poured gently — the bride and groom are made ready for the muhurat.",
+        image: img("1684472993236-b605bb80ca0b", 1000),
+        caption: "Nahor blossom",
+      },
+      {
+        id: "mala",
+        name: "মালা লগা",
+        english: "The Garland Vow",
+        number: "04",
+        text:
+          "Garlands exchanged, hands held — the moment the two become one, in front of everyone they love.",
+        image: img("1705475388142-a2700c4caeb5", 1000),
+        caption: "The garland",
+      },
+      {
+        id: "saat",
+        name: "সাত বিচনী",
+        english: "Seven Seats",
+        number: "05",
+        text:
+          "The bride moves through seven seats, seven times — a blessing for seven lifetimes together.",
+        image: img("1611489704434-2612dc89c992", 1000),
+        caption: "Seven seats",
+      },
+      {
+        id: "biday",
+        name: "কইনা বিদায়",
+        english: "The Farewell",
+        number: "06",
+        text:
+          "A goodbye at her father's door, given through tears and blessings, and a new life begun.",
+        image: img("1591946522651-90fbace43004", 1000),
+        caption: "The farewell door",
+      },
+    ],
+  },
+
+  celebration: {
+    label: "Chapter 04 — The Celebration",
+    titleA: "EVERY SECOND",
+    titleB: "A LITTLE CLOSER",
+    body:
+      "The muhurat is fixed for the morning of 22 November. Until then the house is full of marigolds, borrowed chairs and a great deal of singing.",
+    assamese: "শুভ লগ্নৰ সময় পৰিয়ালে জনাব।",
+    date: "Sunday, 22 November 2026",
+    place: "Gopak Gaon · Dhemaji, Assam",
+    doneNote: "The vows have been spoken — thank you for your blessings.",
+  },
+
+  programme: {
+    label: "Chapter 05 · Programme",
+    heading: "The Day, in Hours",
+    intro:
+      "From the first turmeric blessing to the last farewell, here is how the day will unfold.",
+    items: [
+      {
+        time: "পুৱা",
+        timeEn: "Morning",
+        title: "Nahor & Teloniya",
+        text:
+          "The fragrant bath and the turmeric blessing, begun with the family at the wedding home.",
+        meta: "At the wedding home",
+        image: img("1741513599050-487ccfb86275", 1200),
+      },
+      {
+        time: "দুপৰীয়া",
+        timeEn: "Afternoon",
+        title: "The Wedding & Mala Loga",
+        text:
+          "At the auspicious hour, the garlands are exchanged and the seven seats are circled.",
+        meta: "The main mandap",
+        image: img("1705475388142-a2700c4caeb5", 1200),
+      },
+      {
+        time: "আবেলি",
+        timeEn: "Late Afternoon",
+        title: "Alohi Xotkar",
+        text:
+          "A feast laid out for everyone who travelled — relatives, neighbours and old friends.",
+        meta: "The dining hall",
+        image: img("1608581821197-28646ed9ebe3", 1200),
+      },
+      {
+        time: "সন্ধিয়া",
+        timeEn: "Evening",
+        title: "Koinya Biday",
+        text:
+          "Blessings and tears at the doorway as the bride says goodbye to her childhood home.",
+        meta: "The farewell hour",
+        image: img("1591946522651-90fbace43004", 1200),
+      },
+    ],
+  },
+
+  gallery: {
+    label: "Chapter 06 · Gallery",
+    heading: "Moments, Kept",
+    intro:
+      "Betel leaf, marigold, clay lamps and banana leaf — the simple colours of an Assamese wedding.",
+    items: [
+      {
+        id: "g1",
+        src: img("1608581821197-28646ed9ebe3", 1200),
+        alt: "Banana leaf and greenery",
+        caption: "কলপাত",
+        note: "Banana leaf",
+      },
+      {
+        id: "g2",
+        src: img("1442458017215-285b83f65851", 1200),
+        alt: "A bunch of marigolds",
+        caption: "গাঁধাফুল",
+        note: "Marigold",
+      },
+      {
+        id: "g3",
+        src: img("1605378229010-11aedbb01b24", 1200),
+        alt: "Clay lamps glowing",
+        caption: "মাটিৰ চাকি",
+        note: "Clay lamps",
+      },
+      {
+        id: "g4",
+        src: img("1528207620916-db0d5aab17cb", 1200),
+        alt: "Veins of a banana leaf",
+        caption: "পাতৰ শিৰা",
+        note: "Leaf veins",
+      },
+      {
+        id: "g5",
+        src: img("1607512566084-a20ed291d623", 1200),
+        alt: "A curtain of marigold garlands",
+        caption: "মালাৰ পৰ্দা",
+        note: "Garland curtain",
+      },
+      {
+        id: "g6",
+        src: img("1578981320111-c7e9426cd6e8", 1200),
+        alt: "A boat on the river",
+        caption: "ব্ৰহ্মপুত্ৰ",
+        note: "The Brahmaputra",
+      },
+      {
+        id: "g7",
+        src: img("1621789547000-b74d615ce6c5", 1200),
+        alt: "A long bridge across the river",
+        caption: "নদীৰ দলং",
+        note: "The river bridge",
+      },
+      {
+        id: "g8",
+        src: img("1618508410458-761c490010ad", 1200),
+        alt: "A single green banana leaf",
+        caption: "সেউজীয়া",
+        note: "Green",
+      },
+    ],
+  },
+
+  venue: {
+    label: "Chapter 07 — The Destination",
+    titleA: "A VILLAGE BY THE",
+    titleB: "BRAHMAPUTRA",
+    body:
+      "Gopak Gaon sits a short drive from Dhemaji town, where the Brahmaputra braids through the fields. Our wedding home opens its gate to you from the morning of 22 November.",
+    name: "Our Wedding Home",
+    subtitle: "Gopak Gaon, Dhemaji",
+    address: "Near Mother's Pride School, Gopak Gaon, Dhemaji, Assam, India",
+    note:
+      "Use the map or the QR code below for directions. If you lose your way, call us — someone will guide you in.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Gopak+Gaon%2C+Dhemaji%2C+Assam%2C+India",
+    image: IMAGES.venue,
+    imageCaption: "The river road · Dhemaji",
+    qrLabel: "Scan for directions",
+    qrNote: "Opens our wedding home in Google Maps.",
+    facts: [
+      { label: "By Air", value: "Dibrugarh Airport (DIB) · ~2 hrs by road" },
+      { label: "By Rail", value: "Dhemaji Railway Station · 12 km" },
+      { label: "Coordinates", value: "27.48° N · 94.61° E" },
+      { label: "The Date", value: "22 November 2026 · Sunday" },
+    ],
+    mapPin: { top: "44%", left: "54%" },
+  },
+
+  finale: {
+    label: "With love, from our families",
+    titleA: "YOUR BLESSING",
+    titleB: "MEANS THE WORLD",
+    quote:
+      "আপোনাৰ উপস্থিতি আৰু আশীৰ্বাদ — এই দুয়োটা আমাৰ বাবে আটাইতকৈ মূল্যবান উপহাৰ।",
+    cta: "Say You'll Come",
+    ctaNote: "Kindly reply by 10 November 2026",
+  },
+
+  footer: {
+    tagline: "A wedding woven in Assamese tradition",
+    exploreTitle: "Explore",
+    reachTitle: "Reach Us",
+    dayTitle: "The Day",
+    dayLines: ["22 November 2026", "Sunday · Morning", "Gopak Gaon, Dhemaji"],
+    bottomLeft: "Joyanta & Bandita · 2026",
+    bottomRight: "Made with love, in Assam",
+  },
 };

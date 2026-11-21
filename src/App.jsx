@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import IntroEnvelope from "./components/IntroEnvelope";
+import Cursor from "./components/Cursor";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Invitation from "./components/Invitation";
-import Countdown from "./components/Countdown";
-import Interlude from "./components/Interlude";
+import Couple from "./components/Couple";
 import Rituals from "./components/Rituals";
+import Celebration from "./components/Celebration";
 import Schedule from "./components/Schedule";
-import Venue from "./components/Venue";
 import Gallery from "./components/Gallery";
-import Marquee from "./components/Marquee";
-import Contact from "./components/Contact";
-import Closing from "./components/Closing";
+import Venue from "./components/Venue";
+import Finale from "./components/Finale";
+import Footer from "./components/Footer";
 import MusicControl from "./components/MusicControl";
 import BackToTop from "./components/BackToTop";
 
@@ -33,7 +33,7 @@ export default function App() {
     };
   }, [entered]);
 
-  // Make deep links (/#venue) land on the right section after the intro.
+  // Deep links (/#venue) land on the right section after the intro.
   useEffect(() => {
     if (!entered) return;
     const id = window.location.hash.replace("#", "");
@@ -50,7 +50,7 @@ export default function App() {
     });
   }, [entered]);
 
-  // Reveal each section softly as it enters the viewport.
+  // Reveal sections and cards softly as they enter the viewport.
   useEffect(() => {
     if (!entered) return undefined;
 
@@ -70,7 +70,7 @@ export default function App() {
           }
         });
       },
-      { threshold: 0.1, rootMargin: "0px 0px -4% 0px" }
+      { threshold: 0.08, rootMargin: "0px 0px -6% 0px" }
     );
 
     elements.forEach((element) => observer.observe(element));
@@ -96,7 +96,7 @@ export default function App() {
       nodes.forEach((node) => {
         const host = node.parentElement ?? node;
         const rect = host.getBoundingClientRect();
-        if (rect.bottom < -260 || rect.top > viewport + 260) return;
+        if (rect.bottom < -300 || rect.top > viewport + 300) return;
 
         const speed = Number(node.dataset.parallax) || 0.1;
         const centre = rect.top + rect.height / 2 - viewport / 2;
@@ -123,7 +123,6 @@ export default function App() {
   // Highlight the section currently in view in the navigation.
   useEffect(() => {
     if (!entered) return undefined;
-
     if (typeof IntersectionObserver === "undefined") return undefined;
 
     const sections = Array.from(document.querySelectorAll("section[id]"));
@@ -142,7 +141,7 @@ export default function App() {
 
   return (
     <div className="app">
-      <div className="grain" aria-hidden="true" />
+      <Cursor />
 
       {!entered ? (
         <IntroEnvelope onFinish={handleEnter} />
@@ -152,16 +151,15 @@ export default function App() {
           <main>
             <Hero />
             <Invitation />
-            <Countdown />
-            <Interlude />
+            <Couple />
             <Rituals />
+            <Celebration />
             <Schedule />
-            <Venue />
             <Gallery />
-            <Marquee dark />
-            <Contact />
+            <Venue />
           </main>
-          <Closing />
+          <Finale />
+          <Footer />
           <BackToTop />
           <MusicControl />
         </>

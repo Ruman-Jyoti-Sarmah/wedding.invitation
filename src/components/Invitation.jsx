@@ -1,41 +1,51 @@
 import { WEDDING_DATA } from "../data/weddingData";
-import { GamosaBand, GoldDivider, SectionDecor } from "./Ornaments";
 
 export default function Invitation() {
+  const { intro } = WEDDING_DATA;
+
   return (
-    <section className="section section--paper invite" id="invitation">
-      <SectionDecor />
+    <section className="chapter scene" id="invitation">
+      <div className="intro">
+        <div className="intro__stage">
+          <figure className="intro__img1" data-parallax="0.05">
+            <img
+              src={intro.images[0].src}
+              alt={intro.images[0].alt}
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
 
-      <div className="container">
-        <div className="invite__paper reveal" data-parallax="-0.03">
-          <GamosaBand className="invite__band" />
+          <figure className="intro__img2" data-parallax="-0.06">
+            <img
+              src={intro.images[1].src}
+              alt={intro.images[1].alt}
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
 
-          <div className="invite__inner">
-            <span className="invite__kicker">{WEDDING_DATA.invitationKicker}</span>
+          <div className="intro__content reveal">
+            <span className="label intro__label">{intro.label}</span>
 
-            <h2 className="invite__title">{WEDDING_DATA.invitationTo}</h2>
+            <h2 className="intro__title">
+              {intro.titleA}
+              <span className="intro__title-mid">
+                <em>{intro.titleB}</em>
+              </span>
+            </h2>
 
-            <p className="invite__lede">{WEDDING_DATA.invitationLede}</p>
-
-            <p className="invite__body">{WEDDING_DATA.invitationBody}</p>
-
-            <GoldDivider className="invite__divider" />
-
-            <p className="invite__names">
-              {WEDDING_DATA.groom.name}
-              <em>♥</em>
-              {WEDDING_DATA.bride.name}
+            <p className="intro__body">{intro.body}</p>
+            <p className="intro__body as" lang="as">
+              {intro.assamese}
             </p>
-
-            <p className="invite__meta">
-              {WEDDING_DATA.dateLabel} · {WEDDING_DATA.weekday} ·{" "}
-              {WEDDING_DATA.placeLabel}
-            </p>
-
-            <p className="invite__sign">আন্তৰিকতাৰে — আমাৰ পৰিয়াল</p>
+            <p className="label intro__sign">{intro.signature}</p>
           </div>
 
-          <GamosaBand className="invite__band" />
+          <div className="intro__captions" aria-hidden="true">
+            <span>{intro.images[0].caption}</span>
+            <span>{intro.images[1].caption}</span>
+          </div>
         </div>
       </div>
     </section>

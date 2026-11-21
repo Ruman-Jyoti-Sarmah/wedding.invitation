@@ -1,29 +1,13 @@
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
 import { WEDDING_DATA } from "../data/weddingData";
 
-const LINKS = [
-  { id: "invitation", label: "নিমন্ত্ৰণ" },
-  { id: "rituals", label: "ৰীতি-নীতি" },
-  { id: "schedule", label: "কাৰ্যসূচী" },
-  { id: "venue", label: "বিয়াঘৰ" },
-  { id: "gallery", label: "ফটো" },
-  { id: "contact", label: "যোগাযোগ" },
-];
-
 export default function Navbar({ activeSection }) {
-  const [stuck, setStuck] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const onScroll = () => {
-      const top = window.scrollY;
-      const height =
-        document.documentElement.scrollHeight - window.innerHeight || 1;
-      setStuck(top > 40);
-      setProgress(Math.min(1, Math.max(0, top / height)));
-      if (top > 40) setOpen(false);
+      setScrolled(window.scrollY > 40);
     };
 
     onScroll();
@@ -31,32 +15,27 @@ export default function Navbar({ activeSection }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   return (
-    <header className={`nav ${stuck ? "is-stuck" : ""}`}>
-      <div className="nav__inner">
-        <a className="nav__brand" href="#home" aria-label="জয়ন্ত আৰু বন্দিতা — ওপৰলৈ">
-          <span className="nav__monogram" aria-hidden="true">
-            {WEDDING_DATA.groom.initial}
-            <span className="nav__monogram-amp">·</span>
-            {WEDDING_DATA.bride.initial}
-          </span>
-          <span className="nav__brand-text">
-            {WEDDING_DATA.groom.name}
-            <em> ♥ </em>
-            {WEDDING_DATA.bride.name}
-          </span>
+    <>
+      <header className={`nav ${scrolled ? "nav--scrolled" : ""}`}>
+        <a className="nav__logo" href="#home" aria-label="Back to top">
+          {WEDDING_DATA.monogram}
         </a>
 
-        <nav aria-label="মূল পথনিৰ্দেশনা">
-          <ul className={`nav__links ${open ? "is-open" : ""}`}>
-            {LINKS.map((link) => (
+        <nav aria-label="Primary">
+          <ul className="nav__links">
+            {WEDDING_DATA.navLinks.map((link) => (
               <li key={link.id}>
                 <a
-                  className={`nav__link ${
-                    activeSection === link.id ? "is-active" : ""
-                  }`}
                   href={`#${link.id}`}
-                  onClick={() => setOpen(false)}
+                  className={activeSection === link.id ? "is-active" : ""}
                 >
                   {link.label}
                 </a>
@@ -65,22 +44,43 @@ export default function Navbar({ activeSection }) {
           </ul>
         </nav>
 
+        <a
+          className="nav__book"
+          href={WEDDING_DATA.rsvp.whatsappHref}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {WEDDING_DATA.rsvp.label}
+        </a>
+
         <button
           type="button"
           className="nav__toggle"
           onClick={() => setOpen((value) => !value)}
           aria-expanded={open}
-          aria-label={open ? "মেনু বন্ধ কৰক" : "মেনু খোলক"}
+          aria-label={open ? "Close menu" : "Open menu"}
         >
-          {open ? <X size={20} strokeWidth={1.6} /> : <Menu size={20} strokeWidth={1.6} />}
+          {open ? "Close" : "Menu"}
         </button>
+      </header>
 
-        <span
-          className="nav__progress"
-          style={{ "--progress": progress }}
-          aria-hidden="true"
-        />
-      </div>
-    </header>
+      {open && (
+        <div className="nav__menu">
+          {WEDDING_DATA.navLinks.map((link) => (
+            <a key={link.id} href={`#${link.id}`} onClick={() => setOpen(false)}>
+              {link.label}
+            </a>
+          ))}
+          <a
+            href={WEDDING_DATA.rsvp.whatsappHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setOpen(false)}
+          >
+            {WEDDING_DATA.rsvp.label}
+          </a>
+        </div>
+      )}
+    </>
   );
 }

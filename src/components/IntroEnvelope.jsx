@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { CornerFlourish, GoldDivider } from "./Ornaments";
 import { WEDDING_DATA } from "../data/weddingData";
 
 export default function IntroEnvelope({ onFinish }) {
@@ -7,7 +6,7 @@ export default function IntroEnvelope({ onFinish }) {
 
   useEffect(() => {
     if (!opening) return undefined;
-    const timer = setTimeout(onFinish, 820);
+    const timer = setTimeout(onFinish, 900);
     return () => clearTimeout(timer);
   }, [opening, onFinish]);
 
@@ -20,55 +19,38 @@ export default function IntroEnvelope({ onFinish }) {
   }, []);
 
   return (
-    <div className={`intro ${opening ? "is-open" : ""}`}>
-      <div className="intro__glow" aria-hidden="true" />
-      <div className="intro__frame" aria-hidden="true" />
+    <div className={`gate ${opening ? "is-open" : ""}`}>
+      <div className="gate__glow" aria-hidden="true" />
 
-      <CornerFlourish className="intro__corner intro__corner--tl" />
-      <CornerFlourish className="intro__corner intro__corner--tr" />
-      <CornerFlourish className="intro__corner intro__corner--bl" />
-      <CornerFlourish className="intro__corner intro__corner--br" />
+      <div className="gate__inner">
+        <span className="label gate__est">{WEDDING_DATA.hero.est}</span>
 
-      <div className="intro__inner">
-        <span className="intro__eyebrow">শুভ বিবাহ</span>
-
-        <h1 className="intro__names">
-          {WEDDING_DATA.groom.name}
-          <em>ও</em>
-          {WEDDING_DATA.bride.name}
+        <h1 className="gate__names">
+          <span>{WEDDING_DATA.groom.name}</span>
+          <em>&amp;</em>
+          <span>{WEDDING_DATA.bride.name}</span>
         </h1>
 
-        <GoldDivider className="intro__rule" />
+        <span className="gate__rule" aria-hidden="true" />
 
-        <p className="intro__date">
+        <p className="gate__date">
           {WEDDING_DATA.dateLabel} · {WEDDING_DATA.weekday}
         </p>
+        <p className="gate__place">{WEDDING_DATA.placeLabel}</p>
 
         <button
           type="button"
-          className="intro__seal"
+          className="gate__seal"
           onClick={() => setOpening(true)}
-          aria-label="নিমন্ত্ৰণীখন খোলক"
+          aria-label="Open the invitation"
         >
-          <span>
-            <span className="intro__seal-mark">
-              {WEDDING_DATA.groom.initial}
-              <em> ♥ </em>
-              {WEDDING_DATA.bride.initial}
-            </span>
-            <small>খোলক</small>
-          </span>
+          <span className="gate__seal-mark">{WEDDING_DATA.monogram}</span>
+          <span className="gate__seal-word">Open</span>
         </button>
 
-        <p className="intro__hint">মোহৰত টিপ দি নিমন্ত্ৰণীখন খোলক</p>
-
-        <button
-          type="button"
-          className="intro__skip"
-          onClick={() => setOpening(true)}
-        >
-          পাছত চাওঁ
-        </button>
+        <p className="gate__note as" lang="as">
+          মোহৰত টিপ দি নিমন্ত্ৰণীখন খোলক
+        </p>
       </div>
     </div>
   );
