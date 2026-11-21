@@ -249,10 +249,13 @@ export const WEDDING_DATA = {
   },
 
   gallery: {
-    label: "Chapter 06 · Gallery",
-    heading: "Moments, Kept",
+    label: "Chapter 06 · The Album",
+    titleA: "A HANDFUL",
+    titleB: "OF HAPPY THINGS",
     intro:
-      "Betel leaf, marigold, clay lamps and banana leaf — the simple colours of an Assamese wedding.",
+      "Turn the album — banana leaf, marigold, clay lamps and the river road, the small things we want to keep from this wedding.",
+    hint: "Drag the photo, or use the arrows",
+    countLabel: "memories in the album",
     items: [
       {
         id: "g1",
