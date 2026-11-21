@@ -1,8 +1,20 @@
 import { useEffect, useState } from "react";
-import { WEDDING_DATA } from "../data/weddingData";
+import { IMAGES, WEDDING_DATA, WEDDING_VIDEO } from "../data/weddingData";
 
 export default function IntroEnvelope({ onFinish }) {
   const [opening, setOpening] = useState(false);
+
+  // Guests who prefer reduced motion keep the still photograph.
+  const [showVideo, setShowVideo] = useState(
+    () => !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
+
+  useEffect(() => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const onChange = (event) => setShowVideo(!event.matches);
+    reduce.addEventListener?.("change", onChange);
+    return () => reduce.removeEventListener?.("change", onChange);
+  }, []);
 
   useEffect(() => {
     if (!opening) return undefined;
@@ -20,6 +32,24 @@ export default function IntroEnvelope({ onFinish }) {
 
   return (
     <div className={`gate ${opening ? "is-open" : ""}`}>
+      <div className="gate__media" aria-hidden="true">
+        {showVideo && (
+          <video
+            className="gate__video"
+            src={WEDDING_VIDEO}
+            poster={IMAGES.hero}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            tabIndex={-1}
+            disablePictureInPicture
+          />
+        )}
+        <div className="gate__veil" />
+      </div>
+
       <div className="gate__glow" aria-hidden="true" />
 
       <div className="gate__inner">

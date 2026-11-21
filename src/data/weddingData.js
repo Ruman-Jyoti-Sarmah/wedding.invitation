@@ -2,6 +2,8 @@ export const WEDDING_DATE = "2026-11-22T09:30:00+05:30";
 
 export const MUSIC_VIDEO_ID = "K49-UyBSbOo";
 
+export const WEDDING_VIDEO = "/media/wedding-hero.mp4";
+
 const img = (id, w = 1400) =>
   `https://images.unsplash.com/photo-${id}?q=80&w=${w}&auto=format&fit=crop`;
 
